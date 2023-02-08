@@ -11,10 +11,16 @@ public class HeroAttribute {
         this.intelligence = intelligence;
     }
 
-    public void levelUpAttribute(int strength, int dexterity, int intelligence) {
-        this.strength += strength;
-        this.dexterity += dexterity;
-        this.intelligence += intelligence;
+    public void increaseAttribute(HeroAttribute attribute) {
+        this.strength += attribute.strength;
+        this.dexterity += attribute.dexterity;
+        this.intelligence += attribute.intelligence;
+    }
+
+    public void decreaseAttribute(HeroAttribute attribute) {
+        this.strength -= attribute.strength;
+        this.dexterity -= attribute.dexterity;
+        this.intelligence -= attribute.intelligence;
     }
 
     public int getStrength() {

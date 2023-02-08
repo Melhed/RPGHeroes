@@ -16,4 +16,13 @@ public class Weapon extends Item {
         this.weaponDamage = weaponDamage;
         this.slot = Slot.WEAPON;
     }
+
+    public WeaponType getWeaponType() {
+        return weaponType;
+    }
+
+    public int getWeaponDamage() {
+        return weaponDamage;
+    }
+
 }
