@@ -12,6 +12,7 @@ public class Armor extends Item {
     private HeroAttribute armorAttribute;
 
     public Armor(String name, int requiredLevel, Slot slot, ArmorType armorType, HeroAttribute armorAttribute) {
+        if (slot == Slot.WEAPON) return;
         this.name = name;
         this.requiredLevel = requiredLevel;
         this.slot = slot;
@@ -19,4 +20,11 @@ public class Armor extends Item {
         this.armorAttribute = armorAttribute;
     }
 
+    public ArmorType getArmorType() {
+        return armorType;
+    }
+
+    public HeroAttribute getArmorAttribute() {
+        return armorAttribute;
+    }
 }
