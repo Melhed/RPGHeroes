@@ -23,6 +23,10 @@ public class HeroAttribute {
         this.intelligence -= attribute.intelligence;
     }
 
+    public HeroAttribute getAttributeSumWith(HeroAttribute attr) {
+        return new HeroAttribute(this.strength + attr.strength, this.dexterity + attr.dexterity, this.intelligence + attr.intelligence);
+    }
+
     public int getStrength() {
         return strength;
     }
@@ -33,5 +37,9 @@ public class HeroAttribute {
 
     public int getIntelligence() {
         return intelligence;
+    }
+
+    public String toString() {
+        return "[Str: " + getStrength() + " | Dex: " + getDexterity() + " | Int: " + getIntelligence() + "]";
     }
 }

@@ -9,9 +9,9 @@ public class Weapon extends Item {
     private WeaponType weaponType;
     private int weaponDamage;
     private Slot slot;
+
     public Weapon(String name, int requiredLevel, WeaponType weaponType, int weaponDamage) {
-        this.name = name;
-        this.requiredLevel = requiredLevel;
+        super(name, requiredLevel);
         this.weaponType = weaponType;
         this.weaponDamage = weaponDamage;
         this.slot = Slot.WEAPON;
@@ -23,6 +23,14 @@ public class Weapon extends Item {
 
     public int getWeaponDamage() {
         return weaponDamage;
+    }
+
+    public String getInfo() {
+        return "Weapon " + getName() + " | Stats\nreqLvl: " + getRequiredLevel() + " | Slot: " + getSlot() + " | Type: " + getWeaponType() + " | Dmg: " + getWeaponDamage();
+    }
+
+    public String toString() {
+        return getName();
     }
 
 }

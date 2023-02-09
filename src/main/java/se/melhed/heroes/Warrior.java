@@ -9,13 +9,23 @@ import java.util.Collections;
 public class Warrior extends Hero{
     private String name;
     private int level;
-    private HeroAttribute heroAttributes = new HeroAttribute(5, 2, 1);
-    private ArrayList<WeaponType> validWeaponTypes;
+    private HeroAttribute heroAttributes;
+    private HeroAttribute armorAttributes;
     private ArrayList<ArmorType> validArmorTypes;
+    private ArrayList<WeaponType> validWeaponTypes;
+
     public Warrior(String name) {
         super(name);
-        Collections.addAll(validWeaponTypes = new ArrayList<WeaponType>(), WeaponType.AXE, WeaponType.HAMMER, WeaponType.SWORD);
-        Collections.addAll(validArmorTypes = new ArrayList<ArmorType>(), ArmorType.MAIL, ArmorType.PLATE);
+        this.heroAttributes = getHeroAttribute();
+        this.heroAttributes.increaseAttribute(new HeroAttribute(5, 2, 1));
+        this.armorAttributes = getArmorAttributes();
+        this.validArmorTypes = getValidArmorTypes();
+        this.validWeaponTypes = getValidWeaponTypes();
+        Collections.addAll(validArmorTypes, ArmorType.MAIL, ArmorType.PLATE);
+        Collections.addAll(validWeaponTypes, WeaponType.AXE, WeaponType.HAMMER, WeaponType.SWORD);
+    }
+
+    public void damage() {
 
     }
 
@@ -23,5 +33,4 @@ public class Warrior extends Hero{
         this.level++;
         this.heroAttributes.increaseAttribute(new HeroAttribute(3,2, 1));
     }
-
 }
