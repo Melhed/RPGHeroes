@@ -13,19 +13,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Hero {
-    private final String name;
-    private final int level;
-    private final HeroAttribute heroAttributes;
-    private final HashMap<Slot, Item> equipment = new HashMap<>();
-    private final ArrayList<WeaponType> validWeaponTypes;
-    private final ArrayList<ArmorType> validArmorTypes;
+
+    protected final String name;
+    protected int level;
+    protected final HeroAttribute heroAttributes;
+    protected final HashMap<Slot, Item> equipment = new HashMap<>();
+    protected final ArrayList<WeaponType> validWeaponTypes;
+    protected final ArrayList<ArmorType> validArmorTypes;
 
     public Hero(String name) {
         this.name = name;
         this.level = 1;
         this.heroAttributes = new HeroAttribute(0, 0, 0);
-        this.validWeaponTypes = new ArrayList<WeaponType>();
-        this.validArmorTypes = new ArrayList<ArmorType>();
+        this.validWeaponTypes = new ArrayList<>();
+        this.validArmorTypes = new ArrayList<>();
         this.equipment.put(Slot.WEAPON, null);
         this.equipment.put(Slot.HEAD, null);
         this.equipment.put(Slot.BODY, null);
@@ -33,7 +34,7 @@ public abstract class Hero {
     }
 
     public HeroAttribute getTotalAttributes() {
-        HeroAttribute heroAttr = getHeroAttribute();
+        HeroAttribute heroAttr = getHeroAttributes();
         HeroAttribute armorAttr = getArmorAttributes();
         return new HeroAttribute(
                 heroAttr.getStrength() + armorAttr.getStrength(),
@@ -63,8 +64,7 @@ public abstract class Hero {
     }
 
     public void equip(Item item){
-        if(item instanceof Weapon) {
-            Weapon weapon = (Weapon) item;
+        if(item instanceof Weapon weapon) {
             try {
                 canEquipWeapon(weapon);
             } catch (InvalidWeaponException e) {
@@ -73,8 +73,7 @@ public abstract class Hero {
             }
         }
 
-        if(item instanceof Armor) {
-            Armor armor = (Armor) item;
+        if(item instanceof Armor armor) {
             try{
                 canEquipArmor(armor);
             } catch (InvalidArmorException e) {
@@ -87,7 +86,7 @@ public abstract class Hero {
         this.equipment.put(item.getSlot(), item);
     }
 
-    public abstract void damage();
+    public abstract int damage();
     public abstract void levelUp();
     public String getName() {
         return this.name;
@@ -95,7 +94,7 @@ public abstract class Hero {
     public int getLevel() {
         return this.level;
     }
-    public HeroAttribute getHeroAttribute() {
+    public HeroAttribute getHeroAttributes() {
         return this.heroAttributes;
     }
     public HashMap<Slot, Item> getEquipment() {
