@@ -54,11 +54,11 @@ public abstract class Hero {
         return armorAttribute;
     }
 
-    public void canEquipWeapon(Weapon weapon) throws InvalidWeaponException {
+    private void canEquipWeapon(Weapon weapon) throws InvalidWeaponException {
             if(!getValidWeaponTypes().contains(weapon.getWeaponType())) throw new InvalidWeaponException(getName() + " can't wield weapons of type "+ weapon.getWeaponType() +".");
             if(weapon.getRequiredLevel() > this.level) throw new InvalidWeaponException(getName() + " requires a higher level to wield " + weapon.getName() + ".");
     }
-    public void canEquipArmor(Armor armor) throws InvalidArmorException {
+    private void canEquipArmor(Armor armor) throws InvalidArmorException {
         if(!getValidArmorTypes().contains((armor).getArmorType())) throw new InvalidArmorException(getName() + " can't wear armor of type " + armor.getArmorType() + ".");
         if(armor.getRequiredLevel() > this.level) throw new InvalidArmorException(getName() + " requires a higher level to wear " + armor.getName() + ".");
     }

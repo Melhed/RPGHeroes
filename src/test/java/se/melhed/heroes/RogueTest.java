@@ -5,36 +5,83 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RogueTest {
-    private final Rogue rogue = new Rogue("Melvin");
+    Rogue rogue;
 
-    @Test
-    void rogueShouldBeNamedMelvin() {
-        assertEquals("Melvin", rogue.getName());
+    @BeforeEach
+    void setup() {
+        rogue = new Rogue("Melvin");
     }
 
     @Test
-    void rogueShouldBeLevel1() {
-        assertEquals(1, rogue.getLevel());
+    void testGetName_nameMelvin_shouldPass() {
+        // Arrange
+        String expected = "Melvin";
+
+        // Act
+        String actual = rogue.getName();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void rogueShouldHave1Strength() {
-        assertEquals(2, rogue.getHeroAttributes().getStrength());
+    void testGetLevel_levelOne_shouldPass() {
+        // Arrange
+        int expected = 1;
+
+        // Act
+        int actual = rogue.getLevel();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void rogueShouldHave6Dexterity() {
-        assertEquals(6, rogue.getHeroAttributes().getDexterity());
+    void testGetStrength_twoStrength_shouldPass() {
+        // Arrange
+        int expected = 2;
+
+        // Act
+        int actual = rogue.getHeroAttributes().getStrength();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void rogueShouldHave1Intelligence() {
-        assertEquals(1, rogue.getHeroAttributes().getIntelligence());
+    void testGetDexterity_sixDexterity_shouldPass() {
+        // Arrange
+        int expected = 6;
+
+        // Act
+        int actual = rogue.getHeroAttributes().getDexterity();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void rogueShouldDo1Damage() {
-        assertEquals(1, rogue.damage());
+    void testGetIntelligence_oneIntelligence_shouldPass() {
+        // Arrange
+        int expected = 1;
+
+        // Act
+        int actual = rogue.getHeroAttributes().getIntelligence();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testDamage_oneDamage_shouldPass() {
+        // Arrange
+        int expected = 1;
+
+        // Act
+        int actual = rogue.damage();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Nested
@@ -45,24 +92,51 @@ class RogueTest {
         }
 
         @Test
-        void rogueShouldBeLevel2() {
-            assertEquals(2, rogue.getLevel());
+        void testGetLevel_levelTwo_shouldPass() {
+            // Arrange
+            int expected = 2;
+
+            // Act
+            int actual = rogue.getLevel();
+
+            // Assert
+            assertEquals(expected, actual);
         }
 
         @Test
-        void rogueShouldHave3Strength() {
-            assertEquals(3, rogue.getHeroAttributes().getStrength());
+        void testGetStrength_threeStrength_shouldPass() {
+            // Arrange
+            int expected = 3;
+
+            // Act
+            int actual = rogue.getHeroAttributes().getStrength();
+
+            // Assert
+            assertEquals(expected, actual);
         }
         @Test
-        void rogueShouldHave10Dexterity() {
-            assertEquals(10, rogue.getHeroAttributes().getDexterity());
+        void testGetDexterity_tenDexterity_shouldPass() {
+            // Arrange
+            int expected = 10;
+
+            // Act
+            int actual = rogue.getHeroAttributes().getDexterity();
+
+            // Assert
+            assertEquals(expected, actual);
         }
 
         @Test
-        void rogueShouldHave2Intelligence() {
-            assertEquals(2, rogue.getHeroAttributes().getIntelligence());
+        void testGetIntelligence_twoIntelligence_shouldPass() {
+            // Arrange
+            int expected = 2;
+
+            // Act
+            int actual = rogue.getHeroAttributes().getIntelligence();
+
+            // Assert
+            assertEquals(expected, actual);
         }
 
     }
-
 }

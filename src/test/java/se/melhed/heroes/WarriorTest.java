@@ -2,43 +2,87 @@ package se.melhed.heroes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import se.melhed.items.Slot;
-import se.melhed.items.armor.Armor;
-import se.melhed.items.armor.ArmorType;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class WarriorTest {
-    private final Warrior warrior = new Warrior("Melvin");
+    Warrior warrior;
 
-    @Test
-    void warriorShouldBeNamedMelvin() {
-        assertEquals("Melvin", warrior.getName());
+    @BeforeEach
+    void setup() {
+        warrior = new Warrior("Melvin");
     }
 
     @Test
-    void warriorShouldBeLevel1() {
-        assertEquals(1, warrior.getLevel());
+    void testGetName_nameMelvin_shouldPass() {
+        // Arrange
+        String expected = "Melvin";
+
+        // Act
+        String actual = warrior.getName();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void warriorShouldHave1Strength() {
-        assertEquals(5, warrior.getHeroAttributes().getStrength());
+    void testGetLevel_levelOne_shouldPass() {
+        // Arrange
+        int expected = 1;
+
+        // Act
+        int actual = warrior.getLevel();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void warriorShouldHave6Dexterity() {
-        assertEquals(2, warrior.getHeroAttributes().getDexterity());
+    void testGetStrength_fiveStrength_shouldPass() {
+        // Arrange
+        int expected = 5;
+
+        // Act
+        int actual = warrior.getHeroAttributes().getStrength();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void warriorShouldHave1Intelligence() {
-        assertEquals(1, warrior.getHeroAttributes().getIntelligence());
+    void testGetDexterity_twoDexterity_shouldPass() {
+        // Arrange
+        int expected = 2;
+
+        // Act
+        int actual = warrior.getHeroAttributes().getDexterity();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void warriorShouldDo1Damage() {
-        assertEquals(1, warrior.damage());
+    void testGetIntelligence_oneIntelligence_shouldPass() {
+        // Arrange
+        int expected = 1;
+
+        // Act
+        int actual = warrior.getHeroAttributes().getIntelligence();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testDamage_oneDamage_shouldPass() {
+        // Arrange
+        int expected = 1;
+
+        // Act
+        int actual = warrior.damage();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Nested
@@ -49,30 +93,51 @@ class WarriorTest {
         }
 
         @Test
-        void warriorShouldBeLevel2() {
-            assertEquals(2, warrior.getLevel());
+        void testGetLevel_levelTwo_shouldPass() {
+            // Arrange
+            int expected = 2;
+
+            // Act
+            int actual = warrior.getLevel();
+
+            // Assert
+            assertEquals(expected, actual);
         }
 
         @Test
-        void warriorShouldHave3Strength() {
-            assertEquals(8, warrior.getHeroAttributes().getStrength());
+        void testGetStrength_eightStrength_shouldPass() {
+            // Arrange
+            int expected = 8;
+
+            // Act
+            int actual = warrior.getHeroAttributes().getStrength();
+
+            // Assert
+            assertEquals(expected, actual);
         }
         @Test
-        void warriorShouldHave10Dexterity() {
-            assertEquals(4, warrior.getHeroAttributes().getDexterity());
+        void testGetDexterity_fourDexterity_shouldPass() {
+            // Arrange
+            int expected = 4;
+
+            // Act
+            int actual = warrior.getHeroAttributes().getDexterity();
+
+            // Assert
+            assertEquals(expected, actual);
         }
 
         @Test
-        void warriorShouldHave2Intelligence() {
-            assertEquals(2, warrior.getHeroAttributes().getIntelligence());
+        void testGetIntelligence_twoIntelligence_shouldPass() {
+            // Arrange
+            int expected = 2;
+
+            // Act
+            int actual = warrior.getHeroAttributes().getIntelligence();
+
+            // Assert
+            assertEquals(expected, actual);
         }
 
     }
-
-    @Nested
-    class equipmentTest {
-        private final Armor bodyArmor = new Armor("bodyArmor", 1, Slot.BODY, ArmorType.MAIL, new HeroAttribute(1, 1, 1));
-
-    }
-
 }

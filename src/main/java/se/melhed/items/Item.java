@@ -1,9 +1,9 @@
 package se.melhed.items;
 
 public abstract class Item {
-    private final String name;
-    private final int requiredLevel;
-    private Slot slot;
+    protected final String name;
+    protected final int requiredLevel;
+    protected Slot slot;
 
     public Item(String name, int requiredLevel, Slot slot) {
         this.name = name;

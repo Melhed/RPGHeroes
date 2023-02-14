@@ -5,36 +5,83 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MageTest {
-    private final Mage mage = new Mage("Melvin");
+    Mage mage;
 
-    @Test
-    void mageShouldBeNamedMelvin() {
-        assertEquals("Melvin", mage.getName());
+    @BeforeEach
+    void setup() {
+        mage = new Mage("Melvin");
     }
 
     @Test
-    void mageShouldBeLevel1() {
-        assertEquals(1, mage.getLevel());
+    void testGetName_nameMelvin_shouldPass() {
+        // Arrange
+        String expected = "Melvin";
+
+        // Act
+        String actual = mage.getName();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void mageShouldHave1Strength() {
-        assertEquals(1, mage.getHeroAttributes().getStrength());
+    void testGetLevel_levelOne_shouldPass() {
+        // Arrange
+        int expected = 1;
+
+        // Act
+        int actual = mage.getLevel();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void mageShouldHave1Dexterity() {
-        assertEquals(1, mage.getHeroAttributes().getDexterity());
+    void testGetStrength_oneStrength_shouldPass() {
+        // Arrange
+        int expected = 1;
+
+        // Act
+        int actual = mage.getHeroAttributes().getStrength();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void mageShouldHave8Intelligence() {
-        assertEquals(8, mage.getHeroAttributes().getIntelligence());
+    void testGetDexterity_oneDexterity_shouldPass() {
+        // Arrange
+        int expected = 1;
+
+        // Act
+        int actual = mage.getHeroAttributes().getDexterity();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void mageShouldDo1Damage() {
-        assertEquals(1, mage.damage());
+    void testGetIntelligence_eightIntelligence_shouldPass() {
+        // Arrange
+        int expected = 8;
+
+        // Act
+        int actual = mage.getHeroAttributes().getIntelligence();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testDamage_oneDamage_shouldPass() {
+        // Arrange
+        int expected = 1;
+
+        // Act
+        int actual = mage.damage();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Nested
@@ -45,24 +92,51 @@ class MageTest {
         }
 
         @Test
-        void mageShouldBeLevel2() {
-            assertEquals(2, mage.getLevel());
+        void testGetLevel_levelTwo_shouldPass() {
+            // Arrange
+            int expected = 2;
+
+            // Act
+            int actual = mage.getLevel();
+
+            // Assert
+            assertEquals(expected, actual);
         }
 
         @Test
-        void mageShouldHave2Strength() {
-            assertEquals(2, mage.getHeroAttributes().getStrength());
+        void testGetStrength_twoStrength_shouldPass() {
+            // Arrange
+            int expected = 2;
+
+            // Act
+            int actual = mage.getHeroAttributes().getStrength();
+
+            // Assert
+            assertEquals(expected, actual);
         }
         @Test
-        void mageShouldHave2Dexterity() {
-            assertEquals(2, mage.getHeroAttributes().getDexterity());
+        void testGetDexterity_twoDexterity_shouldPass() {
+            // Arrange
+            int expected = 2;
+
+            // Act
+            int actual = mage.getHeroAttributes().getDexterity();
+
+            // Assert
+            assertEquals(expected, actual);
         }
 
         @Test
-        void mageShouldHave13Intelligence() {
-            assertEquals(13, mage.getHeroAttributes().getIntelligence());
+        void testGetIntelligence_thirteenIntelligence_shouldPass() {
+            // Arrange
+            int expected = 13;
+
+            // Act
+            int actual = mage.getHeroAttributes().getIntelligence();
+
+            // Assert
+            assertEquals(expected, actual);
         }
 
     }
-
 }

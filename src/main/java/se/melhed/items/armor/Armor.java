@@ -5,9 +5,6 @@ import se.melhed.items.Item;
 import se.melhed.items.Slot;
 
 public class Armor extends Item {
-    private String name;
-    private int requiredLevel;
-    private Slot slot;
     private ArmorType armorType;
     private HeroAttribute armorAttributes;
 

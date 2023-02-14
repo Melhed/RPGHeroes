@@ -5,36 +5,83 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RangerTest {
-    private final Ranger ranger = new Ranger("Melvin");
+    Ranger ranger;
 
-    @Test
-    void rangerShouldBeNamedMelvin() {
-        assertEquals("Melvin", ranger.getName());
+    @BeforeEach
+    void setup() {
+        ranger = new Ranger("Melvin");
     }
 
     @Test
-    void rangerShouldBeLevel1() {
-        assertEquals(1, ranger.getLevel());
+    void testGetName_nameMelvin_shouldPass() {
+        // Arrange
+        String expected = "Melvin";
+
+        // Act
+        String actual = ranger.getName();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void rangerShouldHave1Strength() {
-        assertEquals(1, ranger.getHeroAttributes().getStrength());
+    void testGetLevel_levelOne_shouldPass() {
+        // Arrange
+        int expected = 1;
+
+        // Act
+        int actual = ranger.getLevel();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void rangerShouldHave7Dexterity() {
-        assertEquals(7, ranger.getHeroAttributes().getDexterity());
+    void testGetStrength_oneStrength_shouldPass() {
+        // Arrange
+        int expected = 1;
+
+        // Act
+        int actual = ranger.getHeroAttributes().getStrength();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void rangerShouldHave1Intelligence() {
-        assertEquals(1, ranger.getHeroAttributes().getIntelligence());
+    void testGetDexterity_sevenDexterity_shouldPass() {
+        // Arrange
+        int expected = 7;
+
+        // Act
+        int actual = ranger.getHeroAttributes().getDexterity();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void rangerShouldDo1Damage() {
-        assertEquals(1, ranger.damage());
+    void testGetIntelligence_oneIntelligence_shouldPass() {
+        // Arrange
+        int expected = 1;
+
+        // Act
+        int actual = ranger.getHeroAttributes().getIntelligence();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testDamage_oneDamage_shouldPass() {
+        // Arrange
+        int expected = 1;
+
+        // Act
+        int actual = ranger.damage();
+
+        // Assert
+        assertEquals(expected, actual);
     }
 
     @Nested
@@ -45,24 +92,51 @@ class RangerTest {
         }
 
         @Test
-        void rangerShouldBeLevel2() {
-            assertEquals(2, ranger.getLevel());
+        void testGetLevel_levelTwo_shouldPass() {
+            // Arrange
+            int expected = 2;
+
+            // Act
+            int actual = ranger.getLevel();
+
+            // Assert
+            assertEquals(expected, actual);
         }
 
         @Test
-        void rangerShouldHave2Strength() {
-            assertEquals(2, ranger.getHeroAttributes().getStrength());
+        void testGetStrength_twoStrength_shouldPass() {
+            // Arrange
+            int expected = 2;
+
+            // Act
+            int actual = ranger.getHeroAttributes().getStrength();
+
+            // Assert
+            assertEquals(expected, actual);
         }
         @Test
-        void rangerShouldHave12Dexterity() {
-            assertEquals(12, ranger.getHeroAttributes().getDexterity());
+        void testGetDexterity_twelveDexterity_shouldPass() {
+            // Arrange
+            int expected = 12;
+
+            // Act
+            int actual = ranger.getHeroAttributes().getDexterity();
+
+            // Assert
+            assertEquals(expected, actual);
         }
 
         @Test
-        void rangerShouldHave2Intelligence() {
-            assertEquals(2, ranger.getHeroAttributes().getIntelligence());
+        void testGetIntelligence_twoIntelligence_shouldPass() {
+            // Arrange
+            int expected = 2;
+
+            // Act
+            int actual = ranger.getHeroAttributes().getIntelligence();
+
+            // Assert
+            assertEquals(expected, actual);
         }
 
     }
-
 }
