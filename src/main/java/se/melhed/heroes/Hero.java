@@ -8,34 +8,30 @@ import se.melhed.items.armor.Armor;
 import se.melhed.items.armor.ArmorType;
 import se.melhed.items.weapon.Weapon;
 import se.melhed.items.weapon.WeaponType;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.*;
 
 public abstract class Hero {
 
     protected final String name;
-    protected int level;
-    protected final HeroAttribute heroAttributes;
+    protected int level = 1;
+    protected final HeroAttribute heroAttributes = new HeroAttribute(0, 0, 0);
     protected final HashMap<Slot, Item> equipment = new HashMap<>();
-    protected final ArrayList<WeaponType> validWeaponTypes;
-    protected final ArrayList<ArmorType> validArmorTypes;
+    protected final Set<WeaponType> validWeaponTypes = new HashSet<>();
+    protected final Set<ArmorType> validArmorTypes = new HashSet<>();
 
     public Hero(String name) {
         this.name = name;
-        this.level = 1;
-        this.heroAttributes = new HeroAttribute(0, 0, 0);
-        this.validWeaponTypes = new ArrayList<>();
-        this.validArmorTypes = new ArrayList<>();
         this.equipment.put(Slot.WEAPON, null);
         this.equipment.put(Slot.HEAD, null);
         this.equipment.put(Slot.BODY, null);
         this.equipment.put(Slot.LEGS, null);
     }
 
-    public HeroAttribute getTotalAttributes() {
+    public HeroAttribute totalAttributes() {
         HeroAttribute heroAttr = getHeroAttributes();
         HeroAttribute armorAttr = getArmorAttributes();
+
         return new HeroAttribute(
                 heroAttr.getStrength() + armorAttr.getStrength(),
                 heroAttr.getDexterity() + armorAttr.getDexterity(),
@@ -51,39 +47,30 @@ public abstract class Hero {
                 armorAttribute.increaseAttribute(((Armor) entry.getValue()).getArmorAttributes());
             }
         }
+
         return armorAttribute;
     }
 
-    private void canEquipWeapon(Weapon weapon) throws InvalidWeaponException {
-            if(!getValidWeaponTypes().contains(weapon.getWeaponType())) throw new InvalidWeaponException(getName() + " can't wield weapons of type "+ weapon.getWeaponType() +".");
-            if(weapon.getRequiredLevel() > this.level) throw new InvalidWeaponException(getName() + " requires a higher level to wield " + weapon.getName() + ".");
-    }
-    private void canEquipArmor(Armor armor) throws InvalidArmorException {
-        if(!getValidArmorTypes().contains((armor).getArmorType())) throw new InvalidArmorException(getName() + " can't wear armor of type " + armor.getArmorType() + ".");
-        if(armor.getRequiredLevel() > this.level) throw new InvalidArmorException(getName() + " requires a higher level to wear " + armor.getName() + ".");
+    public void equipWeapon(Weapon weapon) throws InvalidWeaponException {
+        if(!getValidWeaponTypes().contains(weapon.getWeaponType())) {
+            throw new InvalidWeaponException(getName() + " can't wield WeaponType "+ weapon.getWeaponType() + ".");
+        }
+        if(weapon.getRequiredLevel() > this.level) {
+            throw new InvalidWeaponException(getName() + " requires a higher level to wield " + weapon.getName() + ".");
+        }
+        this.equipment.put(weapon.getSlot(), weapon);
     }
 
-    public void equip(Item item){
-        if(item instanceof Weapon weapon) {
-            try {
-                canEquipWeapon(weapon);
-            } catch (InvalidWeaponException e) {
-                System.out.println(e.getMessage());
-                return;
-            }
+    public void equipArmor(Armor armor) throws InvalidArmorException {
+        if(!getValidArmorTypes().contains((armor).getArmorType())) {
+            throw new InvalidArmorException(getName() + " can't wear ArmorType " + armor.getArmorType() + ".");
+        }
+        if(armor.getRequiredLevel() > this.level) {
+            throw new InvalidArmorException(getName() + " requires a higher level to wear " + armor.getName() + ".");
         }
 
-        if(item instanceof Armor armor) {
-            try{
-                canEquipArmor(armor);
-            } catch (InvalidArmorException e) {
-                System.out.println(e.getMessage());
-                return;
-            }
-            getArmorAttributes().increaseAttribute(armor.getArmorAttributes());
-        }
-
-        this.equipment.put(item.getSlot(), item);
+        getArmorAttributes().increaseAttribute(armor.getArmorAttributes());
+        this.equipment.put(armor.getSlot(), armor);
     }
 
     public abstract int damage();
@@ -100,10 +87,10 @@ public abstract class Hero {
     public HashMap<Slot, Item> getEquipment() {
         return equipment;
     }
-    public ArrayList<WeaponType> getValidWeaponTypes() {
+    public Set<WeaponType> getValidWeaponTypes() {
         return validWeaponTypes;
     }
-    public ArrayList<ArmorType> getValidArmorTypes() {
+    public Set<ArmorType> getValidArmorTypes() {
         return validArmorTypes;
     }
 

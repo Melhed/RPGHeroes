@@ -1,15 +1,12 @@
 package se.melhed.items;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import se.melhed.items.weapon.Weapon;
 import se.melhed.items.weapon.WeaponType;
 
 public class WeaponTest {
-    @Nested
-    class weaponCreationTest {
         private Weapon weapon;
 
         @BeforeEach
@@ -76,5 +73,4 @@ public class WeaponTest {
             // Arrange
             assertEquals(expected, actual);
         }
-    }
 }

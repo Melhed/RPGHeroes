@@ -17,10 +17,13 @@ public class Warrior extends Hero{
 
     @Override
     public int damage() {
+        double damageMultiplier = 1 + ((double)totalAttributes().getStrength() / 100);
+
         if(getEquipment().get(Slot.WEAPON) instanceof Weapon weapon) {
-            return weapon.getWeaponDamage() * (1+(getHeroAttributes().getStrength()/100));
+            return (int) (weapon.getWeaponDamage()*damageMultiplier);
         }
-        return 1*(1+(getHeroAttributes().getStrength()/100));
+
+        return (int) (1 * damageMultiplier);
     }
 
     @Override

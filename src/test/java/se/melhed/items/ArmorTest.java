@@ -1,7 +1,6 @@
 package se.melhed.items;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,9 +9,6 @@ import se.melhed.items.armor.Armor;
 import se.melhed.items.armor.ArmorType;
 
 public class ArmorTest {
-
-    @Nested
-    class armorCreationTest {
         private Armor armor;
 
         @BeforeEach
@@ -103,6 +99,5 @@ public class ArmorTest {
             // Assert
             assertEquals(expected, actual);
         }
-    }
 
 }
