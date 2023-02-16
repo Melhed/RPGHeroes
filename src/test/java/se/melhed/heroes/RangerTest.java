@@ -45,36 +45,24 @@ class RangerTest {
     }
 
     @Test
-    void testGetStrength_oneStrength_shouldPass() {
+    void testGetHeroAttributes_oneStrSevenDexOneInt_shouldPass() {
         // Arrange
-        int expected = 1;
+        HeroAttribute expected = new HeroAttribute(1, 7, 1);
 
         // Act
-        int actual = ranger.getHeroAttributes().getStrength();
+        HeroAttribute actual = ranger.getHeroAttributes();
 
         // Assert
         assertEquals(expected, actual);
     }
 
     @Test
-    void testGetDexterity_sevenDexterity_shouldPass() {
+    void testTotalAttributes_oneStrSevenDexOneInt_shouldPass() {
         // Arrange
-        int expected = 7;
+        HeroAttribute expected = new HeroAttribute(1, 7, 1);
 
         // Act
-        int actual = ranger.getHeroAttributes().getDexterity();
-
-        // Assert
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void testGetIntelligence_oneIntelligence_shouldPass() {
-        // Arrange
-        int expected = 1;
-
-        // Act
-        int actual = ranger.getHeroAttributes().getIntelligence();
+        HeroAttribute actual = ranger.totalAttributes();
 
         // Assert
         assertEquals(expected, actual);
@@ -83,10 +71,10 @@ class RangerTest {
     @Test
     void testDamage_oneDamage_shouldPass() {
         // Arrange
-        int expected = 1;
+        double expected = 1.07;
 
         // Act
-        int actual = ranger.damage();
+        double actual = ranger.damage();
 
         // Assert
         assertEquals(expected, actual);
@@ -112,38 +100,123 @@ class RangerTest {
         }
 
         @Test
-        void testGetStrength_twoStrength_shouldPass() {
+        void testGetHeroAttributes_oneStrSevenDexOneInt_shouldPass() {
             // Arrange
-            int expected = 2;
+            HeroAttribute expected = new HeroAttribute(2, 12, 2);
 
             // Act
-            int actual = ranger.getHeroAttributes().getStrength();
+            HeroAttribute actual = ranger.getHeroAttributes();
 
             // Assert
             assertEquals(expected, actual);
         }
+    }
+
+    @Nested
+    class OneArmorEquippedTest {
+        Armor armor = new Armor("Armor", 1, Slot.LEGS, ArmorType.MAIL, new HeroAttribute(9, 3, 9));
+
         @Test
-        void testGetDexterity_twelveDexterity_shouldPass() {
+        void testTotalAttributes_tenStrTenDexTenInt_shouldPass() {
             // Arrange
-            int expected = 12;
+            HeroAttribute expected = new HeroAttribute(10, 10, 10);
 
             // Act
-            int actual = ranger.getHeroAttributes().getDexterity();
+            try {
+                ranger.equipArmor(armor);
+            } catch (InvalidArmorException e) {
+                System.out.println(e.getMessage());
+            }
+
+            HeroAttribute actual = ranger.totalAttributes();
 
             // Assert
             assertEquals(expected, actual);
+
         }
+    }
+
+    @Nested
+    class TwoArmorEquippedTest {
+        Armor legArmor = new Armor("legArmor", 1, Slot.LEGS, ArmorType.MAIL, new HeroAttribute(9, 3, 9));
+        Armor bodyArmor = new Armor("bodyArmor", 1, Slot.BODY, ArmorType.MAIL, new HeroAttribute(10, 10, 10));
 
         @Test
-        void testGetIntelligence_twoIntelligence_shouldPass() {
+        void testTotalAttributes_20Str20Dex20Int_shouldPass() {
             // Arrange
-            int expected = 2;
+            HeroAttribute expected = new HeroAttribute(20, 20, 20);
 
             // Act
-            int actual = ranger.getHeroAttributes().getIntelligence();
+            try {
+                ranger.equipArmor(legArmor);
+                ranger.equipArmor(bodyArmor);
+            } catch (InvalidArmorException e) {
+                System.out.println(e.getMessage());
+            }
+
+            HeroAttribute actual = ranger.totalAttributes();
 
             // Assert
             assertEquals(expected, actual);
+
+        }
+    }
+
+    @Nested
+    class ThreeArmorEquippedTest {
+        Armor legArmor = new Armor("legArmor", 1, Slot.LEGS, ArmorType.MAIL, new HeroAttribute(9, 3, 9));
+        Armor bodyArmor = new Armor("bodyArmor", 1, Slot.BODY, ArmorType.MAIL, new HeroAttribute(10, 10, 10));
+        Armor headArmor = new Armor("headArmor", 1, Slot.HEAD, ArmorType.MAIL, new HeroAttribute(10, 10, 10));
+
+        @Test
+        void testTotalAttributes_30Str30Dex30Int_shouldPass() {
+            // Arrange
+            HeroAttribute expected = new HeroAttribute(30, 30, 30);
+
+            // Act
+            try {
+                ranger.equipArmor(legArmor);
+                ranger.equipArmor(bodyArmor);
+                ranger.equipArmor(headArmor);
+            } catch (InvalidArmorException e) {
+                System.out.println(e.getMessage());
+            }
+
+            HeroAttribute actual = ranger.totalAttributes();
+
+            // Assert
+            assertEquals(expected, actual);
+
+        }
+    }
+
+    @Nested
+    class ThreeArmorOneReplacedTest {
+        Armor legArmor = new Armor("legArmor", 1, Slot.LEGS, ArmorType.MAIL, new HeroAttribute(9, 3, 9));
+        Armor bodyArmor = new Armor("bodyArmor", 1, Slot.BODY, ArmorType.MAIL, new HeroAttribute(10, 10, 10));
+        Armor headArmor = new Armor("headArmor", 1, Slot.HEAD, ArmorType.MAIL, new HeroAttribute(10, 10, 10));
+        Armor upgradedHeadArmor = new Armor("upgradedHeadArmor", 1, Slot.HEAD, ArmorType.MAIL, new HeroAttribute(15, 15, 15));
+
+        @Test
+        void testTotalAttributes_35Str35Dex35Int_shouldPass() {
+            // Arrange
+            HeroAttribute expected = new HeroAttribute(35, 35, 35);
+
+            // Act
+            try {
+                ranger.equipArmor(legArmor);
+                ranger.equipArmor(bodyArmor);
+                ranger.equipArmor(headArmor);
+                ranger.equipArmor(upgradedHeadArmor);
+            } catch (InvalidArmorException e) {
+                System.out.println(e.getMessage());
+            }
+
+            HeroAttribute actual = ranger.totalAttributes();
+
+            // Assert
+            assertEquals(expected, actual);
+
         }
     }
 
@@ -159,10 +232,10 @@ class RangerTest {
             } catch (InvalidWeaponException e) {
                 System.out.println(e.getMessage());
             }
-            int expected = 1070;
+            double expected = 1070;
 
             // Act
-            int actual = ranger.damage();
+            double actual = ranger.damage();
 
             // Assert
             assertEquals(expected, actual);
@@ -184,10 +257,10 @@ class RangerTest {
             } catch (InvalidWeaponException e) {
                 System.out.println(e.getMessage());
             }
-            int expected = 107;
+            double expected = 107;
 
             // Act
-            int actual = ranger.damage();
+            double actual = ranger.damage();
 
             // Assert
             assertEquals(expected, actual);
@@ -219,10 +292,10 @@ class RangerTest {
                 System.out.println(e.getMessage());
             }
 
-            int expected = 2270;
+            double expected = 2270;
 
             // Act
-            int actual = ranger.damage();
+            double actual = ranger.damage();
 
             // Assert
             assertEquals(expected, actual);

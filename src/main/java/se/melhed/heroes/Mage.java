@@ -4,6 +4,8 @@ import se.melhed.items.Slot;
 import se.melhed.items.armor.ArmorType;
 import se.melhed.items.weapon.Weapon;
 import se.melhed.items.weapon.WeaponType;
+
+import java.text.DecimalFormat;
 import java.util.Collections;
 
 public class Mage extends Hero{
@@ -16,14 +18,14 @@ public class Mage extends Hero{
     }
 
     @Override
-    public int damage() {
+    public double damage() {
         double damageMultiplier = 1 + ((double)totalAttributes().getIntelligence() / 100);
 
         if(getEquipment().get(Slot.WEAPON) instanceof Weapon weapon) {
-            return (int) (weapon.getWeaponDamage()*damageMultiplier);
+            return weapon.getWeaponDamage()*damageMultiplier;
         }
 
-        return (int) (1 * damageMultiplier);
+        return 1 * damageMultiplier;
     }
 
     @Override

@@ -45,36 +45,24 @@ class WarriorTest {
     }
 
     @Test
-    void testGetStrength_fiveStrength_shouldPass() {
+    void testGetHeroAttributes_fiveStrTwoDexOneInt_shouldPass() {
         // Arrange
-        int expected = 5;
+        HeroAttribute expected = new HeroAttribute(5, 2, 1);
 
         // Act
-        int actual = warrior.getHeroAttributes().getStrength();
+        HeroAttribute actual = warrior.getHeroAttributes();
 
         // Assert
         assertEquals(expected, actual);
     }
 
     @Test
-    void testGetDexterity_twoDexterity_shouldPass() {
+    void testTotalAttributes_fiveStrTwoDexOneInt_shouldPass() {
         // Arrange
-        int expected = 2;
+        HeroAttribute expected = new HeroAttribute(5, 2, 1);
 
         // Act
-        int actual = warrior.getHeroAttributes().getDexterity();
-
-        // Assert
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void testGetIntelligence_oneIntelligence_shouldPass() {
-        // Arrange
-        int expected = 1;
-
-        // Act
-        int actual = warrior.getHeroAttributes().getIntelligence();
+        HeroAttribute actual = warrior.totalAttributes();
 
         // Assert
         assertEquals(expected, actual);
@@ -83,10 +71,10 @@ class WarriorTest {
     @Test
     void testDamage_oneDamage_shouldPass() {
         // Arrange
-        int expected = 1;
+        double expected = 1.05;
 
         // Act
-        int actual = warrior.damage();
+        double actual = warrior.damage();
 
         // Assert
         assertEquals(expected, actual);
@@ -112,40 +100,126 @@ class WarriorTest {
         }
 
         @Test
-        void testGetStrength_eightStrength_shouldPass() {
+        void testGetHeroAttributes_eightStrFourDexTwoInt_shouldPass() {
             // Arrange
-            int expected = 8;
+            HeroAttribute expected = new HeroAttribute(8, 4, 2);
 
             // Act
-            int actual = warrior.getHeroAttributes().getStrength();
-
-            // Assert
-            assertEquals(expected, actual);
-        }
-        @Test
-        void testGetDexterity_fourDexterity_shouldPass() {
-            // Arrange
-            int expected = 4;
-
-            // Act
-            int actual = warrior.getHeroAttributes().getDexterity();
-
-            // Assert
-            assertEquals(expected, actual);
-        }
-
-        @Test
-        void testGetIntelligence_twoIntelligence_shouldPass() {
-            // Arrange
-            int expected = 2;
-
-            // Act
-            int actual = warrior.getHeroAttributes().getIntelligence();
+            HeroAttribute actual = warrior.getHeroAttributes();
 
             // Assert
             assertEquals(expected, actual);
         }
     }
+
+    @Nested
+    class OneArmorEquippedTest {
+        Armor armor = new Armor("Armor", 1, Slot.LEGS, ArmorType.MAIL, new HeroAttribute(5, 8, 9));
+
+        @Test
+        void testTotalAttributes_tenStrTenDexTenInt_shouldPass() {
+            // Arrange
+            HeroAttribute expected = new HeroAttribute(10, 10, 10);
+
+            // Act
+            try {
+                warrior.equipArmor(armor);
+            } catch (InvalidArmorException e) {
+                System.out.println(e.getMessage());
+            }
+
+            HeroAttribute actual = warrior.totalAttributes();
+
+            // Assert
+            assertEquals(expected, actual);
+
+        }
+    }
+
+    @Nested
+    class TwoArmorEquippedTest {
+        Armor legArmor = new Armor("legArmor", 1, Slot.LEGS, ArmorType.MAIL, new HeroAttribute(5, 8, 9));
+        Armor bodyArmor = new Armor("bodyArmor", 1, Slot.BODY, ArmorType.MAIL, new HeroAttribute(10, 10, 10));
+
+        @Test
+        void testTotalAttributes_20Str20Dex20Int_shouldPass() {
+            // Arrange
+            HeroAttribute expected = new HeroAttribute(20, 20, 20);
+
+            // Act
+            try {
+                warrior.equipArmor(legArmor);
+                warrior.equipArmor(bodyArmor);
+            } catch (InvalidArmorException e) {
+                System.out.println(e.getMessage());
+            }
+
+            HeroAttribute actual = warrior.totalAttributes();
+
+            // Assert
+            assertEquals(expected, actual);
+
+        }
+    }
+
+    @Nested
+    class ThreeArmorEquippedTest {
+        Armor legArmor = new Armor("legArmor", 1, Slot.LEGS, ArmorType.MAIL, new HeroAttribute(5, 8, 9));
+        Armor bodyArmor = new Armor("bodyArmor", 1, Slot.BODY, ArmorType.MAIL, new HeroAttribute(10, 10, 10));
+        Armor headArmor = new Armor("headArmor", 1, Slot.HEAD, ArmorType.MAIL, new HeroAttribute(10, 10, 10));
+
+        @Test
+        void testTotalAttributes_30Str30Dex30Int_shouldPass() {
+            // Arrange
+            HeroAttribute expected = new HeroAttribute(30, 30, 30);
+
+            // Act
+            try {
+                warrior.equipArmor(legArmor);
+                warrior.equipArmor(bodyArmor);
+                warrior.equipArmor(headArmor);
+            } catch (InvalidArmorException e) {
+                System.out.println(e.getMessage());
+            }
+
+            HeroAttribute actual = warrior.totalAttributes();
+
+            // Assert
+            assertEquals(expected, actual);
+
+        }
+    }
+
+    @Nested
+    class ThreeArmorOneReplacedTest {
+        Armor legArmor = new Armor("legArmor", 1, Slot.LEGS, ArmorType.MAIL, new HeroAttribute(5, 8, 9));
+        Armor bodyArmor = new Armor("bodyArmor", 1, Slot.BODY, ArmorType.MAIL, new HeroAttribute(10, 10, 10));
+        Armor headArmor = new Armor("headArmor", 1, Slot.HEAD, ArmorType.MAIL, new HeroAttribute(10, 10, 10));
+        Armor upgradedHeadArmor = new Armor("upgradedHeadArmor", 1, Slot.HEAD, ArmorType.MAIL, new HeroAttribute(15, 15, 15));
+
+        @Test
+        void testTotalAttributes_35Str35Dex35Int_shouldPass() {
+            // Arrange
+            HeroAttribute expected = new HeroAttribute(35, 35, 35);
+
+            // Act
+            try {
+                warrior.equipArmor(legArmor);
+                warrior.equipArmor(bodyArmor);
+                warrior.equipArmor(headArmor);
+                warrior.equipArmor(upgradedHeadArmor);
+            } catch (InvalidArmorException e) {
+                System.out.println(e.getMessage());
+            }
+
+            HeroAttribute actual = warrior.totalAttributes();
+
+            // Assert
+            assertEquals(expected, actual);
+
+        }
+    }
+
 
     @Nested
     class EquipWeaponDamageTest {
@@ -159,10 +233,10 @@ class WarriorTest {
             } catch (InvalidWeaponException e) {
                 System.out.println(e.getMessage());
             }
-            int expected = 1050;
+            double expected = 1050;
 
             // Act
-            int actual = warrior.damage();
+            double actual = warrior.damage();
 
             // Assert
             assertEquals(expected, actual);
@@ -183,10 +257,10 @@ class WarriorTest {
             } catch (InvalidWeaponException e) {
                 System.out.println(e.getMessage());
             }
-            int expected = 105;
+            double expected = 105;
 
             // Act
-            int actual = warrior.damage();
+            double actual = warrior.damage();
 
             // Assert
             assertEquals(expected, actual);
@@ -217,10 +291,10 @@ class WarriorTest {
                 System.out.println(e.getMessage());
             }
 
-            int expected = 11070;
+            double expected = 11070;
 
             // Act
-            int actual = warrior.damage();
+            double actual = warrior.damage();
 
             // Assert
             assertEquals(expected, actual);

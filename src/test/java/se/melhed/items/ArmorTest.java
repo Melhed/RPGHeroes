@@ -65,39 +65,14 @@ public class ArmorTest {
         }
 
         @Test
-        void testGetStrength_oneStrength_shouldPass() {
+        void testGetArmorAttributes_oneStrTwoDexThreeInt_shouldPass() {
             // Arrange
-            int expected = 1;
+            HeroAttribute expected = new HeroAttribute(1, 2, 3);
 
             // Act
-            int actual = armor.getArmorAttributes().getStrength();
+            HeroAttribute actual = armor.getArmorAttributes();
 
             // Assert
             assertEquals(expected, actual);
         }
-
-        @Test
-        void testGetDexterity_twoDexterity_shouldPass() {
-            // Arrange
-            int expected = 2;
-
-            // Act
-            int actual = armor.getArmorAttributes().getDexterity();
-
-            // Assert
-            assertEquals(expected, actual);
-        }
-
-        @Test
-        void testGetIntelligence_threeIntelligence_shouldPass() {
-            // Arrange
-            int expected = 3;
-
-            // Act
-            int actual = armor.getArmorAttributes().getIntelligence();
-
-            // Assert
-            assertEquals(expected, actual);
-        }
-
 }

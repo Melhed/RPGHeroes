@@ -39,7 +39,12 @@ public class HeroAttribute {
         return intelligence;
     }
 
-    public String toString() {
-        return "[Str: " + getStrength() + " | Dex: " + getDexterity() + " | Int: " + getIntelligence() + "]";
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HeroAttribute other = (HeroAttribute) o;
+        return strength == other.strength && dexterity == other.dexterity && intelligence == other.intelligence;
     }
+
 }
