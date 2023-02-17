@@ -20,4 +20,4 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml verify
       - name: Test Report
-        run: mvn test
+        run: mvn --batch-mode -Dmaven.test.failure.ignore=true test
