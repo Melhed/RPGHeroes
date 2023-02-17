@@ -28,6 +28,7 @@ public abstract class Hero {
         this.equipment.put(Slot.LEGS, null);
     }
 
+    // Calculates hero's attributes together
     public HeroAttribute totalAttributes() {
         HeroAttribute heroAttr = getHeroAttributes();
         HeroAttribute armorAttr = getArmorAttributes();
@@ -39,18 +40,20 @@ public abstract class Hero {
         );
     }
 
+    // Calculates sum of all equipped armor pieces' attributes
     public HeroAttribute getArmorAttributes() {
         HeroAttribute armorAttribute = new HeroAttribute(0, 0, 0);
 
         for(Map.Entry<Slot, Item> entry : getEquipment().entrySet()) {
-            if(entry.getValue() != null && entry.getValue() instanceof Armor) {
-                armorAttribute.increaseAttribute(((Armor) entry.getValue()).getArmorAttributes());
+            if(entry.getValue() != null && entry.getValue() instanceof Armor armor) {
+                armorAttribute.increaseAttribute(armor.getArmorAttributes());
             }
         }
 
         return armorAttribute;
     }
 
+    // Equips a weapon assuming correct WeaponType and level requirements
     public void equipWeapon(Weapon weapon) throws InvalidWeaponException {
         if(!getValidWeaponTypes().contains(weapon.getWeaponType())) {
             throw new InvalidWeaponException(getName() + " can't wield WeaponType "+ weapon.getWeaponType() + ".");
@@ -61,6 +64,7 @@ public abstract class Hero {
         this.equipment.put(weapon.getSlot(), weapon);
     }
 
+    // Equips an armor piece assuming correct ArmorType and level requirements
     public void equipArmor(Armor armor) throws InvalidArmorException {
         if(!getValidArmorTypes().contains((armor).getArmorType())) {
             throw new InvalidArmorException(getName() + " can't wear ArmorType " + armor.getArmorType() + ".");
@@ -73,6 +77,7 @@ public abstract class Hero {
         this.equipment.put(armor.getSlot(), armor);
     }
 
+    // Returns a String showcasing the hero's basic attributes
     public String display() {
 
         return "Name: " + this.getName() + " | " +

@@ -16,6 +16,7 @@ public class Mage extends Hero{
         Collections.addAll(validWeaponTypes, WeaponType.STAFF, WeaponType.WAND);
     }
 
+    // Calculates the damage output of the Mage via it's attributes, potentially equipped weapon and armor.
     @Override
     public double damage() {
         double damageMultiplier = 1 + ((double)totalAttributes().getIntelligence() / 100);

@@ -11,6 +11,7 @@ public class HeroAttribute {
         this.intelligence = intelligence;
     }
 
+    // Adds the stats of the provided HeroAttribute to this HeroAttribute
     public void increaseAttribute(HeroAttribute attribute) {
         this.strength += attribute.strength;
         this.dexterity += attribute.dexterity;

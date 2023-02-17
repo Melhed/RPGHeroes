@@ -15,6 +15,7 @@ public class Warrior extends Hero{
         Collections.addAll(validWeaponTypes, WeaponType.AXE, WeaponType.HAMMER, WeaponType.SWORD);
     }
 
+    // Calculates the damage output of the Warrior via it's potentially equipped weapon and armor.
     @Override
     public double damage() {
         double damageMultiplier = 1 + ((double)totalAttributes().getStrength() / 100);

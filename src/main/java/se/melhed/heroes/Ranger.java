@@ -15,6 +15,7 @@ public class Ranger extends Hero{
         Collections.addAll(validArmorTypes, ArmorType.LEATHER, ArmorType.MAIL);
     }
 
+    // Calculates the damage output of the Ranger via it's potentially equipped weapon and armor.
     @Override
     public double damage() {
         double damageMultiplier = 1 + ((double)totalAttributes().getDexterity() / 100);
