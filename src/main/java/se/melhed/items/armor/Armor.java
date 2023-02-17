@@ -5,26 +5,20 @@ import se.melhed.items.Item;
 import se.melhed.items.Slot;
 
 public class Armor extends Item {
-    private String name;
-    private int requiredLevel;
-    private Slot slot;
-    private ArmorType armorType;
-    private HeroAttribute armorAttribute;
+    private final ArmorType armorType;
+    private final HeroAttribute armorAttributes;
 
-    public Armor(String name, int requiredLevel, Slot slot, ArmorType armorType, HeroAttribute armorAttribute) {
-        if (slot == Slot.WEAPON) return;
-        this.name = name;
-        this.requiredLevel = requiredLevel;
-        this.slot = slot;
+    public Armor(String name, int requiredLevel, Slot slot, ArmorType armorType, HeroAttribute armorAttributes) {
+        super(name, requiredLevel, slot);
         this.armorType = armorType;
-        this.armorAttribute = armorAttribute;
+        this.armorAttributes = armorAttributes;
     }
 
     public ArmorType getArmorType() {
         return armorType;
     }
 
-    public HeroAttribute getArmorAttribute() {
-        return armorAttribute;
+    public HeroAttribute getArmorAttributes() {
+        return armorAttributes;
     }
 }

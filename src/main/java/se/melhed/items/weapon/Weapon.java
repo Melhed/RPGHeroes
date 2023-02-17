@@ -4,14 +4,11 @@ import se.melhed.items.Item;
 import se.melhed.items.Slot;
 
 public class Weapon extends Item {
-    private String name;
-    private int requiredLevel;
-    private WeaponType weaponType;
-    private int weaponDamage;
-    private Slot slot;
+    private final WeaponType weaponType;
+    private final int weaponDamage;
+
     public Weapon(String name, int requiredLevel, WeaponType weaponType, int weaponDamage) {
-        this.name = name;
-        this.requiredLevel = requiredLevel;
+        super(name, requiredLevel);
         this.weaponType = weaponType;
         this.weaponDamage = weaponDamage;
         this.slot = Slot.WEAPON;

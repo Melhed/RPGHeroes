@@ -1,9 +1,20 @@
 package se.melhed.items;
 
 public abstract class Item {
-    private String name;
-    private int requiredLevel;
-    private Slot slot;
+    protected final String name;
+    protected final int requiredLevel;
+    protected Slot slot;
+
+    public Item(String name, int requiredLevel, Slot slot) {
+        this.name = name;
+        this.requiredLevel = requiredLevel;
+        this.slot = slot;
+    }
+
+    public Item(String name, int requiredLevel) {
+        this.name = name;
+        this.requiredLevel = requiredLevel;
+    }
 
     public String getName() {
         return name;
@@ -16,5 +27,4 @@ public abstract class Item {
     public Slot getSlot() {
         return slot;
     }
-
 }

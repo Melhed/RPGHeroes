@@ -17,12 +17,6 @@ public class HeroAttribute {
         this.intelligence += attribute.intelligence;
     }
 
-    public void decreaseAttribute(HeroAttribute attribute) {
-        this.strength -= attribute.strength;
-        this.dexterity -= attribute.dexterity;
-        this.intelligence -= attribute.intelligence;
-    }
-
     public int getStrength() {
         return strength;
     }
@@ -34,4 +28,13 @@ public class HeroAttribute {
     public int getIntelligence() {
         return intelligence;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HeroAttribute other = (HeroAttribute) o;
+        return strength == other.strength && dexterity == other.dexterity && intelligence == other.intelligence;
+    }
+
 }
