@@ -73,6 +73,17 @@ public abstract class Hero {
         this.equipment.put(armor.getSlot(), armor);
     }
 
+    public String display() {
+
+        return "Name: " + this.getName() + " | " +
+                "Class: " + this.getClass().getSimpleName() + " | " +
+                "Level: " + this.getLevel() + "\n" +
+                "Str: " + this.totalAttributes().getStrength() + " | " +
+                "Dex: " + this.totalAttributes().getDexterity() + " | " +
+                "Int: " + this.totalAttributes().getIntelligence() + "\n" +
+                "Dmg: " + this.damage();
+    }
+
     public abstract double damage();
     public abstract void levelUp();
     public String getName() {

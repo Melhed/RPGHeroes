@@ -5,7 +5,6 @@ import se.melhed.items.armor.ArmorType;
 import se.melhed.items.weapon.Weapon;
 import se.melhed.items.weapon.WeaponType;
 
-import java.text.DecimalFormat;
 import java.util.Collections;
 
 public class Mage extends Hero{

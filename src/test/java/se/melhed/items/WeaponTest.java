@@ -2,9 +2,10 @@ package se.melhed.items;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import se.melhed.items.weapon.Weapon;
 import se.melhed.items.weapon.WeaponType;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WeaponTest {
         private Weapon weapon;

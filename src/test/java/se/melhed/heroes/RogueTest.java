@@ -1,4 +1,5 @@
 package se.melhed.heroes;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,7 @@ import se.melhed.items.armor.ArmorType;
 import se.melhed.items.weapon.Weapon;
 import se.melhed.items.weapon.WeaponType;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RogueTest {
     Rogue rogue;
@@ -78,6 +79,19 @@ class RogueTest {
 
         // Assert
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void testDisplay_correctDisplay_shouldPass() {
+        // Arrange
+        String expected = "Name: Melvin | Class: Rogue | Level: 1\nStr: 2 | Dex: 6 | Int: 1\nDmg: 1.06";
+
+        // Act
+        String actual = rogue.display();
+
+        // Assert
+        assertEquals(expected, actual);
+
     }
 
     @Nested

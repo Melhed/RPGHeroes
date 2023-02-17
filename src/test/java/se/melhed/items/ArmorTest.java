@@ -2,11 +2,11 @@ package se.melhed.items;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
 import se.melhed.heroes.HeroAttribute;
 import se.melhed.items.armor.Armor;
 import se.melhed.items.armor.ArmorType;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ArmorTest {
         private Armor armor;

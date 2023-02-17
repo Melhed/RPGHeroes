@@ -17,16 +17,6 @@ public class HeroAttribute {
         this.intelligence += attribute.intelligence;
     }
 
-    public void decreaseAttribute(HeroAttribute attribute) {
-        this.strength -= attribute.strength;
-        this.dexterity -= attribute.dexterity;
-        this.intelligence -= attribute.intelligence;
-    }
-
-    public HeroAttribute getAttributeSumWith(HeroAttribute attr) {
-        return new HeroAttribute(this.strength + attr.strength, this.dexterity + attr.dexterity, this.intelligence + attr.intelligence);
-    }
-
     public int getStrength() {
         return strength;
     }

@@ -4,8 +4,8 @@ import se.melhed.items.Item;
 import se.melhed.items.Slot;
 
 public class Weapon extends Item {
-    private WeaponType weaponType;
-    private int weaponDamage;
+    private final WeaponType weaponType;
+    private final int weaponDamage;
 
     public Weapon(String name, int requiredLevel, WeaponType weaponType, int weaponDamage) {
         super(name, requiredLevel);
@@ -20,14 +20,6 @@ public class Weapon extends Item {
 
     public int getWeaponDamage() {
         return weaponDamage;
-    }
-
-    public String getInfo() {
-        return "Weapon " + getName() + " | Stats\nreqLvl: " + getRequiredLevel() + " | Slot: " + getSlot() + " | Type: " + getWeaponType() + " | Dmg: " + getWeaponDamage();
-    }
-
-    public String toString() {
-        return getName();
     }
 
 }

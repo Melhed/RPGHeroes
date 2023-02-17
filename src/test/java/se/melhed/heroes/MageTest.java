@@ -1,4 +1,5 @@
 package se.melhed.heroes;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,7 @@ import se.melhed.items.armor.ArmorType;
 import se.melhed.items.weapon.Weapon;
 import se.melhed.items.weapon.WeaponType;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MageTest {
     Mage mage;
@@ -78,6 +79,19 @@ class MageTest {
 
         // Assert
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void testDisplay_correctDisplay_shouldPass() {
+        // Arrange
+        String expected = "Name: Melvin | Class: Mage | Level: 1\nStr: 1 | Dex: 1 | Int: 8\nDmg: 1.08";
+
+        // Act
+        String actual = mage.display();
+
+        // Assert
+        assertEquals(expected, actual);
+
     }
 
     @Nested
